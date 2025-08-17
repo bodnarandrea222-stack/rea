@@ -1,0 +1,51 @@
+/* --- Alap stílusok --- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f7f7;
+  color: #333;
+}
+
+/* Fejléc */
+header {
+  background: linear-gradient(135deg, #6c63ff, #9d6cff);
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* Tartalom */
+.container {
+  padding: 15px;
+}
+
+/* Ruhadarab kártyák */
+.item-card {
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+.item-card:hover {
+  transform: scale(1.02);
+}
+
+/* Gombok */
+button {
+  background: #6c63ff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button:hover {
+  background: #5848c2;
+}
