@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rea – Ruhatár Lite (Mobil)</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#111827">
+
+  <style>
+    :root {
+      --bg:#0b0f16;
+      --card:#0f172a;
+      --ink:#f8fafc;
+      --chip:#132033;
+      --chip-on:#0b3246;
+      --shadow:0 1px 2px rgba(0,0,0,.1);
+    }
+    *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:var(--bg);color:var(--ink);}
+    .container{max-width:940px;margin:0 auto;padding:16px;}
+    .topbar{position:sticky;top:0;z-index:10;background:var(--card);box-shadow:var(--shadow);}
+    .topbar-inner{display:flex;gap:12px;align-items:center;padding:10px;}
+    .brand{display:flex;gap:10px;align-items:center;}
+    .badge{font-size:11px;border:1px solid #333;padding:2px 6px;border-radius:6px;}
+    .btn{min-height:44px;padding:10px 14px;border-radius:12px;font-size:15px;cursor:pointer;}
+    .btn.primary{background:linear-gradient(90deg,#2563eb,#1d4ed8);color:#fff;border:0;}
+    .btn.danger{background:var(--chip);color:#f87171;}
+    .grid{display:grid;gap:12px;}
+    .grid.cards{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+    .card{background:var(--card);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--shadow);}
+    .card img{max-width:100%;border-radius:8px;}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        👗 <strong>Rea – Ruhatár</strong>
+      </div>
+      <span class="badge">Lite</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Üdv, Rea!</h1>
+    <p>Itt lesz a virtuális ruhatárad. 📸</p>
+
+    <div class="grid cards" id="wardrobe">
+      <!-- Ide kerülnek majd a feltöltött ruhák -->
+      <div class="card">
+        <img src="https://via.placeholder.com/120" alt="Ruha">
+        <p>Ruha 1</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/120" alt="Cipő">
+        <p>Cipő</p>
+      </div>
+    </div>
+
+    <button class="btn primary" id="addItem">+ Új darab</button>
+  </div>
+
+  <script>
+    // Egyszerű példa: gombnyomásra új "ruha" kerül be
+    document.getElementById("addItem").addEventListener("click", () => {
+      const grid = document.getElementById("wardrobe");
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<img src="https://via.placeholder.com/120" alt="Új"><p>Új darab</p>`;
+      grid.appendChild(div);
+    });
+  </script>
+
+  <script>
+    // Service worker regisztráció (offline-hoz + telepíthető PWA-hoz)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").then(() => {
+          console.log("Service worker aktív ✅");
+        });
+      });
+    }
+  </script>
+</body>
+</html>
